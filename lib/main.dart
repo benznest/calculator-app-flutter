@@ -31,11 +31,12 @@ class _MyCalculatorPageState extends State<MyCalculatorPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          buildAnswerWidget(),
-        ],
-      ),
+      body: Container(
+          child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[buildAnswerWidget(),
+        buildNumPadWidget()],
+      )),
     );
   }
 
@@ -51,5 +52,41 @@ class _MyCalculatorPageState extends State<MyCalculatorPage> {
               Text("8",
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold))
             ])));
+  }
+
+  Widget buildNumPadWidget() {
+    return Container(
+        color: Color(0xffecf0f1),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Row(children: <Widget>[
+              buildNumberButton("7"),
+              buildNumberButton("8"),
+              buildNumberButton("9"),
+            ]),
+            Row(children: <Widget>[
+              buildNumberButton("4"),
+              buildNumberButton("5"),
+              buildNumberButton("6"),
+            ]),
+            Row(children: <Widget>[
+              buildNumberButton("1"),
+              buildNumberButton("2"),
+              buildNumberButton("3"),
+            ]),
+          ],
+        ));
+  }
+
+  Expanded buildNumberButton(String str) {
+    return Expanded(
+        child: Container(
+            color: Colors.white,
+            height: 100,
+            child: Center(
+                child: Text(str,
+                    style: TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold)))));
   }
 }
